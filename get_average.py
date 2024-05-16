@@ -2,7 +2,7 @@ import os
 import csv
 import statistics
 
-directory = r'D:\Files\Projects\ESP_UWB\ESP_UWB_calib'
+directory = r'D:\Files\Projects\ESP_UWB\ESP_UWB_calib\Meassurment 2'
 
 def get_average(data: list, name: str) -> dict:
 

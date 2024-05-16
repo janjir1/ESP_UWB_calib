@@ -3,7 +3,7 @@ import csv
 
 
 # Define the directory path
-directory = r'D:\Files\Projects\ESP_UWB\ESP_UWB_calib'
+directory = r'D:\Files\Projects\ESP_UWB\ESP_UWB_calib\Meassurment 2'
 
 def wrap(number: float, max_value = int) -> float:
     if number < 0:
@@ -68,8 +68,6 @@ def calculateTOF(data: list) -> dict:
         # Write the updated data back to the file
         csv_writer.writerows(data)
     
-    
-
 forbidden: list = ["_claculated.csv", "averages.csv"]
 
 # Walk through the directory structure
@@ -91,7 +89,7 @@ for root, dirs, files in os.walk(directory):
                     csv_reader = csv.reader(csv_file)
                     data = list(csv_reader)
                     
-                    calculateTOF(data, file)
+                    calculateTOF(data)
 
 
 
