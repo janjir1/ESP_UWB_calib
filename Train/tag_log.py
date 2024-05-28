@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import glob
 
-file_pattern = r'D:\Files\Projects\ESP_UWB\ESP_UWB_calib\Train\tag_log_3.csv'
+file_pattern = r'C:\Users\Janjiri\Desktop\Soubory\ESP_UWB\ESP_UWB_calib\Train\tag_log_3.csv'
 files = glob.glob(file_pattern)
 
 x_data = []
@@ -21,22 +21,39 @@ for file in files:
 # Creating the 3D scatter plot
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
-#ax = fig.add_subplot(111)
 
-colors = ['b', 'g', 'r', 'c', 'b', 'y', 'k', 'orange', 'purple', 'pink']
+
+colors = ['b', 'g', 'r', 'c', 'm', 'y', 'orange', 'k', 'purple', 'pink']
 
 for n in range(len(x_data)):
-    ax.scatter(x_data[n], y_data[n], z_data[n], marker="o", s = 1, c = colors[n], label = f"Kolo {n}") 
+    ax.scatter(x_data[n], y_data[n], z_data[n], marker="x", s = 0.1, c = "b", label = f"Částice")
+
+anchors = {"11a1": [0.0, 0.0, 0.51], "12a2": [4.6, 0.1, 0.23], "13a3": [5.14, 3.3, 0.5], "14a4": [0.7, 3.34, 0.2], "15a5": [2.83, 2.47, 1.39]}
+
+n=len(x_data)
+for key in anchors:
+    ax.scatter(anchors[key][0], anchors[key][1], anchors[key][2], marker="o", c=colors[n], s=30,  label = f"Anchor {key}")
+    n+=1
+
+plt.legend()
+
+#("11a1", [0.0, 0.0, 0.51])
+#("12a2", [4.6, 0.1, 0.23])
+#("13a3", [5.14, 3.3, 0.5])
+#("14a4", [0.7, 3.34, 0.2])
+#("15a5", [2.83, 2.47, 1.39])
 
 #ax.scatter(x, y,  marker='o', s=2) 
 
-#ax.set_xlabel('X Label')
-#ax.set_ylabel('Y Label')
-#ax.set_zlabel('Z Label')
+ax.set_xlabel('X [m]')
+ax.set_ylabel('Y [m]')
+ax.set_zlabel('Z [m]')
 
 ax.set_xlim(0, 6)
 ax.set_ylim(0, 6)
 ax.set_zlim(0, 6)
+
+plt.tight_layout()
 
 #ax.autoscale(enable = False)
 
